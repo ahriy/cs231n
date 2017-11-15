@@ -20,6 +20,7 @@ class KNearestNeighbor(object):
          y[i] is the label for X[i].
     """
     self.X_train = X
+    #print(self.X_train.shape)
     self.y_train = y
     
   def predict(self, X, k=1, num_loops=0):
@@ -110,6 +111,7 @@ class KNearestNeighbor(object):
     """
     num_test = X.shape[0]
     num_train = self.X_train.shape[0]
+    #print("num_train is {}".format(num_train))
     dists = np.zeros((num_test, num_train)) 
     #########################################################################
     # TODO:                                                                 #
@@ -157,8 +159,11 @@ class KNearestNeighbor(object):
             # neighbors. Store these labels in closest_y.                           #
             # Hint: Look up the function numpy.argsort.                             #
             #########################################################################
+            # print("self.y_train is {}".format(self.y_train))
             indices = self.y_train[np.argsort(dists[i], axis=0)[0: k]]
+            # print("indices is {}".format(indices))
             closest_y = list(indices.tolist())
+            # print("closest_y is {}".format(closest_y))
             #########################################################################
             # TODO:                                                                 #
             # Now that you have found the labels of the k nearest neighbors, you    #
